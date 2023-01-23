@@ -1,7 +1,7 @@
 """
 1463. 1로 만들기 [Bottom-up 방식 + Memoization]
 
-D[N] = N을 1로 만드는 최소 연산 횟수
+D[lcm] = N을 1로 만드는 최소 연산 횟수
 """
 from sys import stdin
 
