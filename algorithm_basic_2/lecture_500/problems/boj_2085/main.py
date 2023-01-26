@@ -16,7 +16,7 @@ def check(A: list) -> int:
 
     for i in range(n):
         cnt = 1
-        for j in range(1, n):  # check with i-row
+        for j in range(1, n):  # visited with i-row
             if A[i][j] == A[i][j - 1]:
                 cnt += 1
             else:
@@ -24,7 +24,7 @@ def check(A: list) -> int:
             ans = max(ans, cnt)
 
         cnt = 1
-        for j in range(1, n):  # check with i-column
+        for j in range(1, n):  # visited with i-column
             if A[j][i] == A[j - 1][i]:
                 cnt += 1
             else:
@@ -37,7 +37,7 @@ def left_check(A: list, i: int, j: int) -> int:
     n = len(A)
     ans = 1
 
-    # check with i-row
+    # visited with i-row
     cnt = 1
     for k in range(1, n):
         if A[i][k] == A[i][k - 1]:
@@ -46,7 +46,7 @@ def left_check(A: list, i: int, j: int) -> int:
             cnt = 1
         ans = max(ans, cnt)
 
-    # check with j-column
+    # visited with j-column
     cnt = 1
     for k in range(1, n):
         if A[k][j] == A[k - 1][j]:
@@ -55,7 +55,7 @@ def left_check(A: list, i: int, j: int) -> int:
             cnt = 1
         ans = max(ans, cnt)
 
-    # check with (j+1)-column
+    # visited with (j+1)-column
     if j + 1 < n:
         cnt = 1
         for k in range(1, n):
@@ -71,7 +71,7 @@ def bottom_check(A: list, i: int, j: int) -> int:
     n = len(A)
     ans = 1
 
-    # check with i-row
+    # visited with i-row
     cnt = 1
     for k in range(1, n):
         if A[i][k] == A[i][k - 1]:
@@ -80,7 +80,7 @@ def bottom_check(A: list, i: int, j: int) -> int:
             cnt = 1
         ans = max(ans, cnt)
 
-    # check with (i+1)-row
+    # visited with (i+1)-row
     if i + 1 < n:
         cnt = 1
         for k in range(1, n):
@@ -90,7 +90,7 @@ def bottom_check(A: list, i: int, j: int) -> int:
                 cnt = 1
             ans = max(ans, cnt)
 
-    # check with j-column
+    # visited with j-column
     cnt = 1
     for k in range(1, n):
         if A[k][j] == A[k - 1][j]:
