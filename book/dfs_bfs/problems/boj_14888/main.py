@@ -28,7 +28,7 @@ for idx, val in enumerate(map(int, stdin.readline().split())):
         ops.append(operators[idx])
 
 total = []
-for op in permutations(ops, len(ops)):
+for op in permutations(ops, len(ops)): # ['+', '*'], ['*', '+']
     tmp = A[0]
     for i in range(len(op)):
         tmp = cal(tmp, A[i+1], op[i])

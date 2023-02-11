@@ -1,39 +1,67 @@
 """
 18428. 감시 피하기
 """
+from itertools import combinations
 from sys import stdin
 
-
-def dfs(r):
-    x, y = r
-    visited[x][y] = True
-
-    for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-        row = x + dx
-        col = y + dy
-
-        if row < 0 or row > N-1 or col < 0 or col > N-1:
-            continue
-
-
-
-
-
-
 N = int(stdin.readline().rstrip())
-graph = [line.rstrip().split() for line in stdin.readlines()]
-visited = [[False] * N for _ in range(N)]
-isSecure = True
-numsMark = 3
-dfs((0, 0))
+graph = []
+teachers = []
+spaces = []
 
-for k1 in range(N):
-    for k2 in range(N):
-        print(graph[k1][k2], end=' ')
-    print()
-print()
+for i in range(N):
+    graph.append(list(stdin.readline().rstrip().split()))
 
-if isSecure:
-    print("YES")
-else:
-    print("NO")
+    for j in range(N):
+        if graph[i][j] == 'T':
+            teachers.append((i, j))
+        elif graph[i][j] == 'X':
+            spaces.append((i, j))
+
+
+def seek_student_by(x, y, direction):
+    while True:
+        x += direction[0]
+        y += direction[1]
+
+        # 경계 검사
+        if 0 > x or x > N - 1 or 0 > y or y > N - 1:
+            break
+
+        # 장애물을 만날 경우
+        if graph[x][y] == 'O' or graph[x][y] == 'T':
+            break
+
+        # 학생을 찾을 경우
+        if graph[x][y] == 'S':
+            return True
+
+    return False
+
+
+def seek_students():
+    for x, y in teachers:
+        for direction in [(-1, 0), (1, 0), (0, 1), (0, -1)]:
+            if seek_student_by(x, y, direction):
+                return True
+    return False
+
+
+def sol():
+    for obstacles in combinations(spaces, 3):
+        # 장애물 배치
+        for x, y in obstacles:
+            graph[x][y] = 'O'
+
+        # 검사 수행
+        if not seek_students():
+            return 'YES'
+
+        # 맵 초기화
+        for x, y in obstacles:
+            graph[x][y] = 'X'
+
+    return 'NO'
+
+
+print(sol())
