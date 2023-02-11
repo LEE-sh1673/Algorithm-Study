@@ -21,26 +21,21 @@ def permute(n, m):
 
 def combinate(n, m):
     ans = []
-    combinates = [0] * m
-    check = [0] * len(n)
+    tmp = [0] * m
 
-    def dfs(r):
+    def dfs(s, r):
         """
         :param r: nCr에서 r을 나타냄.
         :return:  조합을 리스트에 담아 반환
         """
-        if r == m:
-            ans.append(tuple(combinates))
+        if s == m:
+            ans.append(tuple(tmp))
         else:
-            for i in range(len(n)):
-                if check[i]:
-                    continue
+            for i in range(r, len(n)):
+                tmp[s] = n[i]
+                dfs(s + 1, i + 1)
 
-                check[i] = 1
-                combinates[r] = n[i]
-                dfs(r + 1)
-                check[i] = 0
-    dfs(0)
+    dfs(0, 0)
     return ans
 
 

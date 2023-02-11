@@ -31,5 +31,5 @@ class Test(TestCase):
     def test_combinate(self):
         self.assertEqual(
             [(3, 6), (3, 9), (6, 9)],
-             ([3, 6, 9], 2)
+            combinate([3, 6, 9], 2)
         )
