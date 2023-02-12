@@ -1,15 +1,18 @@
-dot = list(input())
+input_data = input()
+row = int(input_data[1])
+col = int(ord(input_data[0])) - int(ord('a')) + 1
 
-x = ord(dot[0])-96
-y = int(dot[1])
-cnt = 0
+count = 0
+steps = [(-2, -1), (-2, +1), (-1, +2), (-1, -2), (+2, -1), (+2, +1), (+1, -2), (+1, +2)]
 
-dx = [-1,1,2,2,1,-1,-2,-2]
-dy = [2,2,1,-1,-2,-2,-1,1]
-for i in range(len(dx)):
-    nx = x+dx[i]
-    ny = y+dy[i]
-    if nx<=8 and nx>=1 and ny>=1 and ny<=8:
-        cnt+=1
+for dx, dy in steps:
+    n_row = 0
+    n_col = 0
+    n_row += row + dx
+    n_col += col + dy
 
-print(cnt)
+    if n_row < 1 or n_col < 1 or n_row > 8 or n_col > 8:
+        continue
+    count += 1
+
+print(count)
