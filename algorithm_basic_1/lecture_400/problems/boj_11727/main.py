@@ -1,5 +1,5 @@
 """
-11727. 2×money 타일링 2
+11727. 2×coins 타일링 2
 """
 from sys import stdin
 

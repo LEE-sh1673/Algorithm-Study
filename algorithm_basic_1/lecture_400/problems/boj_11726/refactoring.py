@@ -1,8 +1,8 @@
 """
-11726. 2×money 타일링
+11726. 2×coins 타일링
 
 구현 아이디어:
-결국 문제에 대한 점화식의 형태가 D[money] = D[money-1] + D[money-2] 이므로,
+결국 문제에 대한 점화식의 형태가 D[coins] = D[coins-1] + D[coins-2] 이므로,
 이는 피보나치 수열과 동일하다. 따라서 Top-down 방식 대신 Bottom-up 방식으로 간단하게 구현할 수 있다.
 """
 from sys import stdin
